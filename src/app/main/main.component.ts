@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ApiService} from "../api.service";
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  computers: object[] = [];
+
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.api.getAll('/api/computers')
+      .subscribe(response => {
+        console.log(response._embedded.computers)
+      });
   }
 
 }
