@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiService} from "../api.service";
+import {ResourceService} from "../service/resource.service";
+import {Computer} from "../model/computer";
+import {ComputerService} from "../service/computer.service";
 
 @Component({
   selector: 'app-main',
@@ -8,15 +10,23 @@ import {ApiService} from "../api.service";
 })
 export class MainComponent implements OnInit {
 
-  computers: object[] = [];
+  computers: Computer[] = [];
 
-  constructor(private api: ApiService) { }
+  constructor(private computerService: ComputerService) { }
 
   ngOnInit(): void {
-    this.api.getAll('/api/computers')
+    this.computerService.findAll()
       .subscribe(response => {
-        console.log(response._embedded.computers)
-      });
+        this.computers = response;
+      })
+  }
+
+  findByName(name:string): void {
+    console.log(name);
+    this.computerService.findByName(name)
+      .subscribe(response => {
+        this.computers = response;
+      })
   }
 
 }

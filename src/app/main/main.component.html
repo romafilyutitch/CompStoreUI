@@ -1,6 +1,28 @@
 <p>main works!</p>
 <p>Comp store main page starts workin</p>
+<h1>HELLO</h1>
 
-<div *ngFor="let computer of computers">
-  <p>{{computer}}</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="input-group mb-3">
+        <input #searchBox (input)="findByName(searchBox.value)"  type="text" class="form-control input-text" placeholder="Search products..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+      </div>
+    </div>
+  </div>
 </div>
+
+<div class="container">
+  <div class="row row-cols-5 row-cols-md-5 g-4">
+    <div class="col-5" *ngFor="let computer of computers">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">{{computer.name}}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
