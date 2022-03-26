@@ -17,8 +17,12 @@
     <div class="col-5" *ngFor="let computer of computers">
       <div class="card">
         <div class="card-body">
-          <p class="card-text">{{computer.name}}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <p class="card-title">{{computer.name}}</p>
+          <p class="card-subtitle">{{computer.price}}</p>
+          <p class="card-text">
+          {{computer.color}}, {{computer.graphics}}, {{computer.hdd}}, {{computer.processor}}, {{computer.ram}}, {{computer.year}}
+          </p>
+          <a href="#" class="btn btn-primary">Details</a>
         </div>
       </div>
     </div>
