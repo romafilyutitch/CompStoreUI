@@ -1,4 +1,5 @@
 export interface Computer {
+  id:number,
   name:string,
   year:number,
   processor:string,

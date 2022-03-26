@@ -22,7 +22,9 @@
           <p class="card-text">
           {{computer.color}}, {{computer.graphics}}, {{computer.hdd}}, {{computer.processor}}, {{computer.ram}}, {{computer.year}}
           </p>
-          <a href="#" class="btn btn-primary">Details</a>
+          <a [title]="computer.name + ' details'"
+             [routerLink]="['/details', computer.id]"
+             class="btn btn-primary">Details</a>
         </div>
       </div>
     </div>
