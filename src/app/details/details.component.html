@@ -1,0 +1,58 @@
+<main *ngIf="computer">
+  <div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">{{computer.name}}</h1>
+    <h2 class="display-5 fw-bold">{{computer.price}}</h2>
+    <div class="col-lg-6 mx-auto">
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Add to Cart</button>
+        <button type="button" [routerLink]="''" class="btn btn-outline-secondary btn-lg px-4">Back</button>
+      </div>
+    </div>
+  </div>
+  <div class="b-example-divider"></div>
+  <div class="px-4 py-5 my-5 text-center">
+    <h2 class="display-5 fw-bold">General</h2>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead">
+        {{computer.year}}
+        {{computer.color}}
+      </p>
+    </div>
+  </div>
+  <div class="b-example-divider"></div>
+  <div class="px-4 py-5 my-5 text-center">
+    <h2 class="display-5 fw-bold">Processor</h2>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead">
+        {{computer.processor}}
+      </p>
+    </div>
+  </div>
+  <div class="b-example-divider"></div>
+  <div class="px-4 py-5 my-5 text-center">
+    <h2 class="display-5 fw-bold">Graphics</h2>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead">
+        {{computer.graphics}}
+      </p>
+    </div>
+  </div>
+  <div class="b-example-divider"></div>
+  <div class="px-4 py-5 my-5 text-center">
+    <h2 class="display-5 fw-bold">Memory</h2>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead">
+        {{computer.hdd}}, {{computer.ram}}
+      </p>
+    </div>
+  </div>
+  <div class="b-example-divider"></div>
+  <div class="px-4 py-5 my-5 text-center">
+    <h2 class="display-5 fw-bold">Reviews</h2>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead">
+        Reviews Here
+      </p>
+    </div>
+  </div>
+</main>
