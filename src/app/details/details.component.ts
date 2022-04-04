@@ -19,7 +19,7 @@ export class DetailsComponent implements OnInit {
     //First get the product id from the current route.
     const routeParams = this.route.snapshot.paramMap;
     const productIdFromRoute = Number(routeParams.get('id'));
-
+    console.log(productIdFromRoute);
     //Find the product that correspond with the id provided in route.
     this.computerService.findById(productIdFromRoute)
       .subscribe(response => {

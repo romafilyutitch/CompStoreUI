@@ -14,8 +14,9 @@
     <h2 class="display-5 fw-bold">General</h2>
     <div class="col-lg-6 mx-auto">
       <p class="lead">
-        {{computer.year}}
-        {{computer.color}}
+        Brand: {{computer.brand}}<br>
+        Operation System: {{computer.operationSystem}}<br>
+        Year: {{computer.year}}<br>
       </p>
     </div>
   </div>
@@ -24,7 +25,10 @@
     <h2 class="display-5 fw-bold">Processor</h2>
     <div class="col-lg-6 mx-auto">
       <p class="lead">
-        {{computer.processor}}
+        Brand: {{computer.processorBrand}} <br>
+        Series: {{computer.processorSeries}} <br>
+        Cores: {{computer.processorCoresAmount}} <br>
+        Frequency: {{computer.processorFrequency}}
       </p>
     </div>
   </div>
@@ -33,16 +37,30 @@
     <h2 class="display-5 fw-bold">Graphics</h2>
     <div class="col-lg-6 mx-auto">
       <p class="lead">
-        {{computer.graphics}}
+        Brand: {{computer.graphicsUnitBrand}} <br>
+        Model: {{computer.graphicsUnitModel}} <br>
+        Type: {{computer.graphicsUnitType}} <br>
       </p>
     </div>
   </div>
   <div class="b-example-divider"></div>
   <div class="px-4 py-5 my-5 text-center">
-    <h2 class="display-5 fw-bold">Memory</h2>
+    <h2 class="display-5 fw-bold">RandomAccessMemory</h2>
     <div class="col-lg-6 mx-auto">
       <p class="lead">
-        {{computer.hdd}}, {{computer.ram}}
+        Type: {{computer.randomAccessMemoryType}}<br>
+        Volume: {{computer.randomAccessMemoryVolume}}<br>
+        Frequency: {{computer.randomAccessMemoryFrequency}} <br>
+      </p>
+    </div>
+  </div>
+  <div class="b-example-divider"></div>
+  <div class="px-4 py-5 my-5 text-center">
+    <h2 class="display-5 fw-bold">ReadMemory</h2>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead">
+        Type: {{computer.readMemoryType}}<br>
+        Volume: {{computer.readMemoryVolume}}<br>
       </p>
     </div>
   </div>

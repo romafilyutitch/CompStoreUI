@@ -7,7 +7,7 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export abstract class ResourceService<T> {
-  private apiUrl = environment.apiUrl + '/' + this.getResourceUrl();
+  apiUrl = environment.apiUrl + '/' + this.getResourceUrl();
 
   constructor(private http: HttpClient) {
   }
@@ -19,14 +19,6 @@ export abstract class ResourceService<T> {
       .pipe(
         catchError(this.handleError)
       )
-  }
-
-  findByName(name: string): Observable<T[]> {
-    let params = new HttpParams().append("name", name);
-    return this.http.get<T[]>(`${this.apiUrl}`,{params})
-      .pipe(
-        catchError(this.handleError)
-      );
   }
 
   findById(id: string | number): Observable<T> {
@@ -57,7 +49,7 @@ export abstract class ResourceService<T> {
       );
   }
 
-  private handleError(error: HttpErrorResponse) {
+  handleError(error: HttpErrorResponse) {
     //Handle the HTTP error here
     return throwError('something wrong happend');
   }
