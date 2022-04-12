@@ -25,10 +25,10 @@
     <h2 class="display-5 fw-bold">Processor</h2>
     <div class="col-lg-6 mx-auto">
       <p class="lead">
-        Brand: {{computer.processorBrand}} <br>
-        Series: {{computer.processorSeries}} <br>
-        Cores: {{computer.processorCoresAmount}} <br>
-        Frequency: {{computer.processorFrequency}}
+        Brand: {{computer.processor.brand}} <br>
+        Series: {{computer.processor.series}} <br>
+        Cores: {{computer.processor.coresAmount}} <br>
+        Frequency: {{computer.processor.frequency}}
       </p>
     </div>
   </div>
@@ -37,9 +37,9 @@
     <h2 class="display-5 fw-bold">Graphics</h2>
     <div class="col-lg-6 mx-auto">
       <p class="lead">
-        Brand: {{computer.graphicsUnitBrand}} <br>
-        Model: {{computer.graphicsUnitModel}} <br>
-        Type: {{computer.graphicsUnitType}} <br>
+        Brand: {{computer.graphicsUnit.brand}} <br>
+        Model: {{computer.graphicsUnit.model}} <br>
+        Type: {{computer.graphicsUnit.type}} <br>
       </p>
     </div>
   </div>
@@ -48,9 +48,9 @@
     <h2 class="display-5 fw-bold">RandomAccessMemory</h2>
     <div class="col-lg-6 mx-auto">
       <p class="lead">
-        Type: {{computer.randomAccessMemoryType}}<br>
-        Volume: {{computer.randomAccessMemoryVolume}}<br>
-        Frequency: {{computer.randomAccessMemoryFrequency}} <br>
+        Type: {{computer.randomAccessMemory.type}}<br>
+        Volume: {{computer.randomAccessMemory.volume}}<br>
+        Frequency: {{computer.randomAccessMemory.frequency}} <br>
       </p>
     </div>
   </div>
@@ -59,8 +59,8 @@
     <h2 class="display-5 fw-bold">ReadMemory</h2>
     <div class="col-lg-6 mx-auto">
       <p class="lead">
-        Type: {{computer.readMemoryType}}<br>
-        Volume: {{computer.readMemoryVolume}}<br>
+        Type: {{computer.readMemory.type}}<br>
+        Volume: {{computer.readMemory.volume}}<br>
       </p>
     </div>
   </div>
@@ -69,7 +69,7 @@
     <h2 class="display-5 fw-bold">Reviews</h2>
     <div class="col-lg-6 mx-auto">
       <p class="lead">
-        Reviews Here
+        {{computer.reviews}}
       </p>
     </div>
   </div>
