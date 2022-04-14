@@ -2,109 +2,120 @@
   <div class="m-5">
     <form method="post">
       <h1 class="text-center">Add new Computer to the store</h1>
-      <h2 class="text-center">General data</h2>
-      <div class="row row-cols-4">
-        <div class="col mb-3">
-          <label class="form-label" for="brand">Brand</label>
-          <input type="text" class="form-control" id="brand" placeholder="Brand" required>
-        </div>
-        <div class="col mb-3">
-          <label class="form-label" for="name">Name</label>
-          <input type="text" class="form-control" id="name" placeholder="Name" required>
-        </div>
-        <div class="col mb-3">
-          <label class="form-label" for="operationSystem">Operation system</label>
-          <input type="text" class="form-control" id="operationSystem" placeholder="operation System" required>
-        </div>
-        <div class="col mb-3">
-          <label class="form-label" for="year">Year</label>
-          <input type="number" class="form-control" id="year" required>
-        </div>
-      </div>
-      <hr class="m-3">
-      <h2 class="text-center">Graphics Unit</h2>
-      <div class="row row-cols-3">
-        <div class="col mb-3">
-          <label class="form-label" for="gubrand">Brand</label>
-          <input type="text" class="form-control" id="gubrand" placeholder="Brand" required>
-        </div>
-        <div class="col">
-          <label for="gutype" class="form-label">Type</label>
-          <select class="form-select" id="gutype" required>
-            <option selected disabled value="">Choose...</option>
-            <option value="EMBEDDED">Embedded</option>
-            <option value="DISCRETE">Discrete</option>
-          </select>
-        </div>
-        <div>
-          <label class="form-label" for="gumodel">Model</label>
-          <input type="text" class="form-control" id="gumodel" placeholder="Model" required>
-        </div>
-      </div>
-      <hr class="m-3">
-      <h2 class="text-center">Processor</h2>
-      <div class="row row-cols-4">
-        <div class="col mb-3">
-          <label for="pbrand" class="form-label">Brand</label>
-          <input type="text" class="form-control" id="pbrand" placeholder="Brand" required>
-        </div>
-        <div class="col mb-3">
-          <label for="pseries" class="form-label">Series</label>
-          <input type="text" class="form-control" id="pseries" placeholder="Series" required>
-        </div>
-        <div class="col mb-3">
-          <label for="pcores" class="form-label">Cores Amount</label>
-          <input type="number" class="form-control" id="pcores" placeholder="Cores amount" required>
-        </div>
-        <div class="col mb-3">
-          <label for="pfrequency" class="form-label">Frequency</label>
-          <input type="number" class="form-control" id="pfrequency" placeholder="Frequency" required>
-        </div>
-      </div>
-      <hr class="m-3">
-      <h2 class="text-center">Random access memory</h2>
-      <div class="row row-cols-3">
-        <div class="col">
-          <label for="rvolume" class="form-label">Volume</label>
-          <input type="number" class="form-control" id="rvolume" placeholder="Volume" required>
-        </div>
-        <div class="col">
-          <label for="rtype" class="form-label">Type</label>
-          <select class="form-select" id="rtype" required>
-            <option selected disabled value="">Choose...</option>
-            <option value="DDR1">DDR1</option>
-            <option value="DDR2">DDR2</option>
-            <option value="DDR3">DDR3</option>
-            <option value="DDR4">DDR4</option>
-            <option value="DDR5">DDR5</option>
-          </select>
-        </div>
-        <div class="col">
-          <label for="rfrequency" class="form-label">Frequency</label>
-          <input type="number" class="form-control" id="rfrequency" placeholder="Frequency" required>
-        </div>
-      </div>
-      <hr class="m-3">
-      <h2 class="text-center">Read memory</h2>
-      <div class="row row-cols-2">
-        <div class="col">
-          <label for="mvolume" class="form-label">Volume</label>
-          <input type="number" class="form-control" id="mvolume" placeholder="Volume" required>
-        </div>
-        <div class="col">
-          <label for="mtype" class="form-label">Type</label>
-          <select class="form-select" id="mtype" required>
-            <option selected disabled value="">Choose...</option>
-            <option value="HDD">HDD</option>
-            <option value="SSD">SSD</option>
-          </select>
-        </div>
-      </div>
-      <hr class="m-3">
       <h2 class="text-center">Price</h2>
-      <div class="row">
-        <label for="mtype" class="form-label">Price</label>
-        <input type="number" class="form-control" id="price" placeholder="Price" required>
+      <div class="row justify-content-center">
+        <div class="col col-md-4 text-center">
+          <label for="mtype" class="form-label">Price</label>
+          <input type="number" class="form-control" id="price" placeholder="Price" required>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="row col-md-4">
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
+        </div>
+      </div>
+      <hr class="m-4">
+      <div class="row row-cols-5 mt-5">
+        <div class="col">
+          <h2 class="text-center">General data</h2>
+          <hr class="m-3">
+          <div class="mb-3">
+            <label class="form-label" for="brand">Brand</label>
+            <input type="text" class="form-control" id="brand" placeholder="Brand" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="operationSystem">Operation system</label>
+            <input type="text" class="form-control" id="operationSystem" placeholder="operation System" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="year">Year</label>
+            <input type="number" class="form-control" id="year" required>
+          </div>
+        </div>
+        <div class="col">
+          <h2 class="text-center">Graphics Unit</h2>
+          <hr class="m-3">
+          <div class="mb-3">
+            <label class="form-label" for="gubrand">Brand</label>
+            <input type="text" class="form-control" id="gubrand" placeholder="Brand" required>
+          </div>
+          <div class="mb-3">
+            <label for="gutype" class="form-label">Type</label>
+            <select class="form-select" id="gutype" required>
+              <option selected disabled value="">Choose...</option>
+              <option value="EMBEDDED">Embedded</option>
+              <option value="DISCRETE">Discrete</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="gumodel">Model</label>
+            <input type="text" class="form-control" id="gumodel" placeholder="Model" required>
+          </div>
+        </div>
+
+        <div class="col">
+          <h2 class="text-center">Processor</h2>
+          <hr class="m-3">
+          <div class="mb-3">
+            <label for="pbrand" class="form-label">Brand</label>
+            <input type="text" class="form-control" id="pbrand" placeholder="Brand" required>
+          </div>
+          <div class="mb-3">
+            <label for="pseries" class="form-label">Series</label>
+            <input type="text" class="form-control" id="pseries" placeholder="Series" required>
+          </div>
+          <div class="mb-3">
+            <label for="pcores" class="form-label">Cores Amount</label>
+            <input type="number" class="form-control" id="pcores" placeholder="Cores amount" required>
+          </div>
+          <div class="mb-3">
+            <label for="pfrequency" class="form-label">Frequency</label>
+            <input type="number" class="form-control" id="pfrequency" placeholder="Frequency" required>
+          </div>
+        </div>
+        <div class="col">
+          <h2 class="text-center">RAM</h2>
+          <hr class="m-3">
+          <div class="mb-3">
+            <label for="rvolume" class="form-label">Volume</label>
+            <input type="number" class="form-control" id="rvolume" placeholder="Volume" required>
+          </div>
+          <div class="mb-3">
+            <label for="rtype" class="form-label">Type</label>
+            <select class="form-select" id="rtype" required>
+              <option selected disabled value="">Choose...</option>
+              <option value="DDR1">DDR1</option>
+              <option value="DDR2">DDR2</option>
+              <option value="DDR3">DDR3</option>
+              <option value="DDR4">DDR4</option>
+              <option value="DDR5">DDR5</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="rfrequency" class="form-label">Frequency</label>
+            <input type="number" class="form-control" id="rfrequency" placeholder="Frequency" required>
+          </div>
+        </div>
+        <div class="col">
+          <h2 class="text-center">Read memory</h2>
+          <hr class="m-3">
+          <div class="mb-3">
+            <label for="mvolume" class="form-label">Volume</label>
+            <input type="number" class="form-control" id="mvolume" placeholder="Volume" required>
+          </div>
+          <div class="mb-3">
+            <label for="mtype" class="form-label">Type</label>
+            <select class="form-select" id="mtype" required>
+              <option selected disabled value="">Choose...</option>
+              <option value="HDD">HDD</option>
+              <option value="SSD">SSD</option>
+            </select>
+          </div>
+        </div>
       </div>
     </form>
   </div>
