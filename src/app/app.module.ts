@@ -5,17 +5,20 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { Routes, RouterModule} from '@angular/router';
 import { DetailsComponent } from './details/details.component';
+import { AddComponent} from "./add/add.component";
 
 const routes: Routes = [
   {path: '', component : MainComponent},
-  {path: 'details/:id', component: DetailsComponent}
+  {path: 'details/:id', component: DetailsComponent},
+  {path: 'add', component: AddComponent}
 ];//sets up routes constant where you define your routes.
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    DetailsComponent
+    DetailsComponent,
+    AddComponent
   ],
   imports: [
     BrowserModule,
