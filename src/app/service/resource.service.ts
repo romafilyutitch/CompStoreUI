@@ -28,8 +28,8 @@ export abstract class ResourceService<T> {
       );
   }
 
-  add(resource: T): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, resource)
+  add(resource: T): Observable<T> {
+    return this.http.post<T>(`${this.apiUrl}`, resource)
       .pipe(
         catchError(this.handleError)
       );

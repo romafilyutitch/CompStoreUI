@@ -42,7 +42,7 @@
               <option value="WORK">Work</option>
               <option value="MULTIMEDIA">Multimedia</option>
               <option value="CODING">Coding</option>
-              <option value="GAMIN">Gaming</option>
+              <option value="GAMING">Gaming</option>
             </select>
           </div>
         </div>
@@ -134,21 +134,21 @@
       <div class="col col-5">
         <label for="images" class="form-label">Upload images with preview</label>
         <input #fileInput class="form-control" type="file" id="images" (change)="preview($event)" placeholder="Choose file" multiple accept="image/*">
-        <button class="btn btn-success form-control mt-3" (click)="addPreviewImageToUpload()" *ngIf="previewUrl">Add
+        <button class="btn btn-success form-control mt-3" (click)="addPreviewImageToUpload()" *ngIf="previewFile">Add
           this image to upload
         </button>
         <div class="m-3 text-center">
-          <p *ngIf="previewUrl">Preview</p>
-          <img *ngIf="previewUrl" [src]="previewUrl" width="300" height="300" class="img-thumbnail"/>
+          <p *ngIf="previewFile">Preview</p>
+          <img *ngIf="previewFile" [src]="previewFile" width="300" height="300" class="img-thumbnail"/>
         </div>
       </div>
       <div class="col">
         <p class="text-center">Files for upload</p>
-        <button class="btn btn-danger form-control m-3" (click)="clearUpload()" *ngIf="uploadUrls.length > 0">Clear
+        <button class="btn btn-danger form-control m-3" (click)="clearUpload()" *ngIf="previewFiles.length > 0">Clear
           upload
         </button>
         <div class="row row-cols-3">
-          <div class="col" *ngFor="let url of uploadUrls">
+          <div class="col" *ngFor="let url of previewFiles">
             <img [src]="url" class="img-thumbnail"/>
           </div>
         </div>
@@ -156,3 +156,17 @@
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>One fine body&hellip;</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+

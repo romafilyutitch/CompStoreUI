@@ -1,11 +1,12 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { FormBuilder} from "@angular/forms";
+import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {FormBuilder} from "@angular/forms";
 import {ComputerService} from "../service/computer.service";
 import {Computer} from "../model/computer";
 import {GraphicsUnit} from "../model/graphics-unit";
 import {Processor} from "../model/processor";
 import {RandomAccessMemory} from "../model/random-access-memory";
 import {ReadMemory} from "../model/read-memory";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-add',
@@ -14,11 +15,15 @@ import {ReadMemory} from "../model/read-memory";
 })
 export class AddComponent implements OnInit {
 
-  previewUrl: string = "";
-  uploadUrls: string[] = [];
+  selectedFile: File | undefined;
+  filesToUpload: File[] = [];
+  previewFile: File | undefined;
+  previewFiles: File[] = [];
 
   @ViewChild('fileInput')
   fileInput: ElementRef | undefined;
+  @ViewChild('content')
+  content: TemplateRef<any> | undefined;
 
   form = this.formBuilder.group({
     price: '',
@@ -42,39 +47,55 @@ export class AddComponent implements OnInit {
   })
 
   constructor(private formBuilder: FormBuilder,
-              private computerService: ComputerService) {
+              private computerService: ComputerService,
+              private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
   }
 
   preview(event: any): void {
-    if(event.target.files) {
+    if (event.target.files) {
+      this.selectedFile = event.target.files[0];
       const fileReader = new FileReader();
       fileReader.readAsDataURL(event.target.files[0]);
-      fileReader.onload = (event:any) => {
-        this.previewUrl = event.target.result;
+      fileReader.onload = (event: any) => {
+        this.previewFile = event.target.result
       }
     }
   }
 
   addPreviewImageToUpload(): void {
-    console.log(this.previewUrl)
-    this.uploadUrls.push(this.previewUrl);
+    if (this.selectedFile && this.previewFile) {
+      this.filesToUpload.push(this.selectedFile);
+      this.previewFiles.push(this.previewFile);
+    }
     if (this.fileInput !== undefined) {
       this.fileInput.nativeElement.value = "";
     }
-    this.previewUrl = "";
+    this.selectedFile = undefined;
+    this.previewFile = undefined;
   }
 
   clearUpload(): void {
-    this.uploadUrls.length = 0;
+    this.filesToUpload.length = 0;
+    this.previewFiles.length = 0;
   }
 
   onSubmit() {
     const computerToSave: Computer = this.buildComputer();
-    console.log(computerToSave);
-    this.computerService.add(computerToSave).subscribe(response => console.log(response));
+    this.computerService.add(computerToSave).subscribe(response => {
+      this.filesToUpload.forEach(image => {
+        this.computerService.uploadImage(response, image).subscribe(() => {
+            console.log(`image ${image} was saved`);
+          },
+          () => {
+            console.log(`image ${image} wasn't saved`);
+          });
+      });
+      this.modalService.open(this.content, {centered:true});
+    });
+
     this.form.reset();
   }
 
