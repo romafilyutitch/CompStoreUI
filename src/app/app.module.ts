@@ -6,6 +6,7 @@ import { MainComponent } from './main/main.component';
 import { Routes, RouterModule} from '@angular/router';
 import { DetailsComponent } from './details/details.component';
 import { AddComponent} from "./add/add.component";
+import { ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
   {path: '', component : MainComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

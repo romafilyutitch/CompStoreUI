@@ -1,6 +1,3 @@
-import {GraphicsUnitType} from "./graphics-unit-type";
-import {RandomAccessMemoryType} from "./random-access-memory-type";
-import {ReadMemoryType} from "./read-memory-type";
 import {ComputerPurpose} from "./computer-purpose";
 import {GraphicsUnit} from "./graphics-unit";
 import {Processor} from "./processor";
