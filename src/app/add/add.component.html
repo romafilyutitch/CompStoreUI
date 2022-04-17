@@ -1,12 +1,15 @@
+<h1 class="text-center m-3">Add new Computer to the store</h1>
 <div class="container">
-  <div class="m-5">
+  <div class="m-2" *ngIf="!saved">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <h1 class="text-center">Add new Computer to the store</h1>
       <h2 class="text-center">Price</h2>
       <div class="row justify-content-center">
         <div class="col col-md-4 text-center">
-          <label for="mtype" class="form-label">Price</label>
-          <input formControlName="price" type="number" class="form-control" id="price" placeholder="Price" required>
+          <label for="price" class="form-label">Price</label>
+          <input formControlName="price" type="number" class="form-control" id="price" placeholder="Price" required
+                 [ngClass]="form.get('price')?.errors ? 'is-invalid' : 'is-valid'">
+          <div class="invalid-feedback">Price is required and must be positive!</div>
+          <div class="valid-feedback">Price looks good!</div>
         </div>
       </div>
       <div class="row justify-content-center mt-4">
@@ -21,29 +24,47 @@
           <hr class="m-3">
           <div class="mb-3">
             <label class="form-label" for="brand">Brand</label>
-            <input formControlName="computerBrand" type="text" class="form-control" id="brand" placeholder="Brand" required>
+            <input formControlName="computerBrand" type="text" class="form-control" id="brand" placeholder="Brand"
+                   required
+                   [ngClass]="form.get('computerBrand')?.errors ? 'is-invalid' : 'is-valid'">
+            <div class="invalid-feedback">Computer brand is required</div>
+            <div class="valid-feedback">Computer brand looks good!</div>
           </div>
           <div class="mb-3">
             <label class="form-label" for="name">Name</label>
-            <input formControlName="computerName" type="text" class="form-control" id="name" placeholder="Name" required>
+            <input formControlName="computerName" type="text" class="form-control" id="name" placeholder="Name"
+                   required
+                   [ngClass]="form.get('computerName')?.errors ? 'is-invalid' : 'is-valid'">
+            <div class="invalid-feedback">Computer name is required!</div>
+            <div class="valid-feedback">Computer name looks good!</div>
           </div>
           <div class="mb-3">
             <label class="form-label" for="operationSystem">Operation system</label>
-            <input formControlName="operationSystem" type="text" class="form-control" id="operationSystem" placeholder="operation System" required>
+            <input formControlName="operationSystem" type="text" class="form-control" id="operationSystem"
+                   placeholder="operation System" required
+                   [ngClass]="form.get('operationSystem')?.errors ? 'is-invalid' : 'is-valid'">
+            <div class="invalid-feedback">Operation system is required!</div>
+            <div class="valid-feedback">Operation system looks good!</div>
           </div>
           <div class="mb-3">
             <label class="form-label" for="year">Year</label>
-            <input formControlName="year" type="number" class="form-control" id="year" required>
+            <input formControlName="year" type="number" class="form-control" id="year" required
+                   [ngClass]="form.get('year')?.errors ? 'is-invalid' : 'is-valid'">
+            <div class="invalid-feedback">Year must be 2000 or more!</div>
+            <div class="valid-feedback">Year looks good!</div>
           </div>
           <div class="mb-3">
             <label class="form-label" for="purpose">Purpose</label>
-            <select formControlName="purpose" id="purpose" class="form-select" required>
+            <select formControlName="purpose" id="purpose" class="form-select" required
+                    [ngClass]="form.get('purpose')?.errors ? 'is-invalid' : 'is-valid'">
               <option selected disabled value="">Choose...</option>
               <option value="WORK">Work</option>
               <option value="MULTIMEDIA">Multimedia</option>
               <option value="CODING">Coding</option>
               <option value="GAMING">Gaming</option>
             </select>
+            <div class="invalid-feedback">Purpose is required!</div>
+            <div class="valid-feedback">Purpose looks good!</div>
           </div>
         </div>
         <div class="col">
@@ -51,19 +72,30 @@
           <hr class="m-3">
           <div class="mb-3">
             <label class="form-label" for="gubrand">Brand</label>
-            <input formControlName="GUBrand" type="text" class="form-control" id="gubrand" placeholder="Brand" required>
+            <input formControlName="GUBrand" type="text" class="form-control" id="gubrand" placeholder="Brand"
+                   required
+                   [ngClass]="form.get('GUBrand')?.errors ? 'is-invalid' : 'is-valid'">
+            <div class="invalid-feedback">GU brand is required!</div>
+            <div class="valid-feedback">GU brand looks good!</div>
           </div>
           <div class="mb-3">
             <label for="gutype" class="form-label">Type</label>
-            <select formControlName="GUType" class="form-select" id="gutype" required>
+            <select formControlName="GUType" class="form-select" id="gutype" required
+                    [ngClass]="form.get('GUType')?.errors ? 'is-invalid' : 'is-valid'">
               <option selected disabled value="">Choose...</option>
               <option value="EMBEDDED">Embedded</option>
               <option value="DISCRETE">Discrete</option>
             </select>
+            <div class="invalid-feedback">GU type is required!</div>
+            <div class="valid-feedback">GU type looks good!</div>
           </div>
           <div class="mb-3">
             <label class="form-label" for="gumodel">Model</label>
-            <input formControlName="GUModel" type="text" class="form-control" id="gumodel" placeholder="Model" required>
+            <input formControlName="GUModel" type="text" class="form-control" id="gumodel" placeholder="Model"
+                   required
+                   [ngClass]="form.get('GUModel')?.errors ? 'is-invalid' : 'is-valid'">
+            <div class="invalid-feedback">GU model is required!</div>
+            <div class="valid-feedback">GU model looks good!</div>
           </div>
         </div>
 
@@ -71,20 +103,36 @@
           <h2 class="text-center">Processor</h2>
           <hr class="m-3">
           <div class="mb-3">
-            <label  for="pbrand" class="form-label">Brand</label>
-            <input formControlName="processorBrand" type="text" class="form-control" id="pbrand" placeholder="Brand" required>
+            <label for="pbrand" class="form-label">Brand</label>
+            <input formControlName="processorBrand" type="text" class="form-control" id="pbrand" placeholder="Brand"
+                   required
+                   [ngClass]="form.get('processorBrand')?.errors ? 'is-invalid' : 'is-valid'">
+            <div class="invalid-feedback">Processor brand is required!</div>
+            <div class="invalid-feedback">Processor brand looks good!</div>
           </div>
           <div class="mb-3">
             <label for="pseries" class="form-label">Series</label>
-            <input formControlName="processorSeries" type="text" class="form-control" id="pseries" placeholder="Series" required>
+            <input formControlName="processorSeries" type="text" class="form-control" id="pseries"
+                   placeholder="Series" required
+                   [ngClass]="form.get('processorSeries')?.errors ? 'is-invalid' : 'is-valid'">
+            <div class="invalid-feedback">Processor series is required!</div>
+            <div class="valid-feedback">Processor series looks good!</div>
           </div>
           <div class="mb-3">
             <label for="pcores" class="form-label">Cores Amount</label>
-            <input formControlName="processorCores" type="number" class="form-control" id="pcores" placeholder="Cores amount" required>
+            <input formControlName="processorCores" type="number" class="form-control" id="pcores"
+                   placeholder="Cores amount" required
+                   [ngClass]="form.get('processorCores')?.errors ? 'is-invalid' : 'is-valid'">
+            <div class="invalid-feedback">Processor cores must be positive!</div>
+            <div class="valid-feedback">Processor cores looks good!</div>
           </div>
           <div class="mb-3">
             <label for="pfrequency" class="form-label">Frequency</label>
-            <input formControlName="processorFrequency" type="number" class="form-control" id="pfrequency" placeholder="Frequency" required>
+            <input formControlName="processorFrequency" type="number" class="form-control" id="pfrequency"
+                   placeholder="Frequency" required
+                   [ngClass]="form.get('processorFrequency')?.errors ? 'is-invalid' : 'is-valid'">
+            <div class="invalid-feedback">Processor frequency must be positive!</div>
+            <div class="valid-feedback">Processor frequency looks good!</div>
           </div>
         </div>
         <div class="col">
@@ -92,11 +140,16 @@
           <hr class="m-3">
           <div class="mb-3">
             <label for="rvolume" class="form-label">Volume</label>
-            <input formControlName="RAMVolume" type="number" class="form-control" id="rvolume" placeholder="Volume" required>
+            <input formControlName="RAMVolume" type="number" class="form-control" id="rvolume" placeholder="Volume"
+                   required
+                   [ngClass]="form.get('RAMVolume')?.errors ? 'is-invalid' : 'is-valid'">
+            <div class="invalid-feedback">RAM volume must be positive!</div>
+            <div class="valid-feedback">RAM volume looks good!</div>
           </div>
           <div class="mb-3">
             <label for="rtype" class="form-label">Type</label>
-            <select formControlName="RAMType" class="form-select" id="rtype" required>
+            <select formControlName="RAMType" class="form-select" id="rtype" required
+                    [ngClass]="form.get('RAMType')?.errors ? 'is-invalid' : 'is-valid'">
               <option selected disabled value="">Choose...</option>
               <option value="DDR1">DDR1</option>
               <option value="DDR2">DDR2</option>
@@ -104,10 +157,16 @@
               <option value="DDR4">DDR4</option>
               <option value="DDR5">DDR5</option>
             </select>
+            <div class="invalid-feedback">RAM type is required!</div>
+            <div class="valid-feedback">RAM type looks good!</div>
           </div>
           <div class="mb-3">
             <label for="rfrequency" class="form-label">Frequency</label>
-            <input formControlName="RAMFrequency" type="number" class="form-control" id="rfrequency" placeholder="Frequency" required>
+            <input formControlName="RAMFrequency" type="number" class="form-control" id="rfrequency"
+                   placeholder="Frequency" required
+                   [ngClass]="form.get('RAMFrequency')?.errors ? 'is-invalid' : 'is-valid'">
+            <div class="invalid-feedback">RAM frequency must be positive!</div>
+            <div class="valid-feedback">RAM frequency looks good!</div>
           </div>
         </div>
         <div class="col">
@@ -115,15 +174,22 @@
           <hr class="m-3">
           <div class="mb-3">
             <label for="mvolume" class="form-label">Volume</label>
-            <input formControlName="readMemoryVolume" type="number" class="form-control" id="mvolume" placeholder="Volume" required>
+            <input formControlName="readMemoryVolume" type="number" class="form-control" id="mvolume"
+                   placeholder="Volume" required
+                   [ngClass]="form.get('readMemoryVolume')?.errors ? 'is-invalid' : 'is-valid'">
+            <div class="invalid-feedback">Read memory volume is required!</div>
+            <div class="valid-feedback">Read memory volume looks good!</div>
           </div>
           <div class="mb-3">
             <label for="mtype" class="form-label">Type</label>
-            <select formControlName="readMemoryType" class="form-select" id="mtype" required>
+            <select formControlName="readMemoryType" class="form-select" id="mtype" required
+                    [ngClass]="form.get('readMemoryType')?.errors ? 'is-invalid' : 'is-valid'">
               <option selected disabled value="">Choose...</option>
               <option value="HDD">HDD</option>
               <option value="SSD">SSD</option>
             </select>
+            <div class="invalid-feedback">Read memory type is required!</div>
+            <div class="valid-feedback">Read memory type looks good!</div>
           </div>
         </div>
       </div>
@@ -133,7 +199,8 @@
     <div class="row row-cols-2">
       <div class="col col-5">
         <label for="images" class="form-label">Upload images with preview</label>
-        <input #fileInput class="form-control" type="file" id="images" (change)="preview($event)" placeholder="Choose file" multiple accept="image/*">
+        <input #fileInput class="form-control" type="file" id="images" (change)="preview($event)"
+               placeholder="Choose file" multiple accept="image/*">
         <button class="btn btn-success form-control mt-3" (click)="addPreviewImageToUpload()" *ngIf="previewFile">Add
           this image to upload
         </button>
@@ -155,6 +222,20 @@
       </div>
     </div>
   </div>
+  <div *ngIf="saved">
+    <div class="row text-center">
+      <div class="col">
+        <img src="assets/images/Check.png" width="400" height="400">
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col">
+        <h2>The product {{computerToSave.brand}} {{computerToSave.name}} was saved successfully.</h2>
+        <button type="button" [routerLink]="['/details', computerToSave.id]"  class="btn btn-outline-primary m-3">View product</button>
+        <button type="button" [routerLink]="['']" class="btn btn-outline-primary m-3">Return to main page</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <ng-template #content let-modal>
@@ -164,6 +245,20 @@
   </div>
   <div class="modal-body">
     <p>One fine body&hellip;</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #invalidForm let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Validation isn't passed</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p class="alert alert-danger">The form is invalid. Please try to enter valid info and then try to save the product
+      again</p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>

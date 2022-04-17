@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ComputerService} from "../service/computer.service";
 import {Computer} from "../model/computer";
 import {GraphicsUnit} from "../model/graphics-unit";
@@ -15,35 +15,39 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class AddComponent implements OnInit {
 
+  saved: boolean = false;
   selectedFile: File | undefined;
   filesToUpload: File[] = [];
   previewFile: File | undefined;
   previewFiles: File[] = [];
+  computerToSave: Computer = {} as Computer;
 
   @ViewChild('fileInput')
   fileInput: ElementRef | undefined;
   @ViewChild('content')
   content: TemplateRef<any> | undefined;
+  @ViewChild('invalidForm')
+  invalidFormModal: TemplateRef<any> | undefined;
 
   form = this.formBuilder.group({
-    price: '',
-    computerBrand: '',
-    computerName: '',
-    operationSystem: '',
-    year: '',
-    purpose: '',
-    GUBrand: '',
-    GUType: '',
-    GUModel: '',
-    processorBrand: '',
-    processorSeries: '',
-    processorCores: '',
-    processorFrequency: '',
-    RAMVolume: '',
-    RAMType: '',
-    RAMFrequency: '',
-    readMemoryVolume: '',
-    readMemoryType: ''
+    price: new FormControl(null,[Validators.required, Validators.min(1)]),
+    computerBrand: new FormControl(null, Validators.required),
+    computerName: new FormControl(null, Validators.required),
+    operationSystem: new FormControl(null, Validators.required),
+    year: new FormControl(null, [Validators.required, Validators.min(2000)]),
+    purpose: new FormControl(null, Validators.required),
+    GUBrand: new FormControl(null, Validators.required),
+    GUType: new FormControl(null, Validators.required),
+    GUModel: new FormControl(null, Validators.required),
+    processorBrand: new FormControl(null, Validators.required),
+    processorSeries: new FormControl(null, Validators.required),
+    processorCores: new FormControl(null, [Validators.required, Validators.min(1)]),
+    processorFrequency: new FormControl(null, [Validators.required, Validators.min(1)]),
+    RAMVolume: new FormControl(null, [Validators.required, Validators.min(1)]),
+    RAMType: new FormControl(null, Validators.required),
+    RAMFrequency: new FormControl(null, [Validators.required, Validators.min(1)]),
+    readMemoryVolume: new FormControl(null, [Validators.required, Validators.min(1)]),
+    readMemoryType: new FormControl(null, Validators.required)
   })
 
   constructor(private formBuilder: FormBuilder,
@@ -83,20 +87,25 @@ export class AddComponent implements OnInit {
   }
 
   onSubmit() {
-    const computerToSave: Computer = this.buildComputer();
-    this.computerService.add(computerToSave).subscribe(response => {
-      this.filesToUpload.forEach(image => {
-        this.computerService.uploadImage(response, image).subscribe(() => {
-            console.log(`image ${image} was saved`);
-          },
-          () => {
-            console.log(`image ${image} wasn't saved`);
-          });
+    if (this.form.valid) {
+      const computerToSave: Computer = this.buildComputer();
+      this.computerService.add(computerToSave).subscribe(response => {
+        this.filesToUpload.forEach(image => {
+          this.computerService.uploadImage(response, image).subscribe(() => {
+              console.log(`image ${image} was saved`);
+            },
+            () => {
+              console.log(`image ${image} wasn't saved`);
+            });
+        });
+        this.computerToSave = response;
       });
-      this.modalService.open(this.content, {centered:true});
-    });
+      this.saved = true;
+      this.form.reset();
+    } else {
+      this.modalService.open(this.invalidFormModal, {centered : true})
+    }
 
-    this.form.reset();
   }
 
   private buildComputer(): Computer {
