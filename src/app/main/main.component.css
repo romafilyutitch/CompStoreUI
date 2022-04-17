@@ -22,3 +22,14 @@ img {
   max-height: 200px;
   max-width: 200px;
 }
+
+.card {
+  transition: all 1s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.2);
+  transition: all 1s ease-in-out;
+  z-index: 999999;
+  cursor: pointer;
+}

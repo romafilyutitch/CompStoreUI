@@ -25,7 +25,7 @@
       </div>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" *ngFor="let computer of computers">
-          <div class="card shadow-sm">
+          <div class="card shadow-sm" [routerLink]="['/details', computer.id]">
             <div class="text-center">
               <img *ngIf="computerImages.get(computer)?.length" [src]="computerImages.get(computer)?.[0]">
             </div>
