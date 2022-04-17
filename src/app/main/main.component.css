@@ -17,3 +17,8 @@
 .form-control {
   border: 1px solid #f8c146
 }
+
+img {
+  max-height: 200px;
+  max-width: 200px;
+}
