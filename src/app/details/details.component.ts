@@ -28,4 +28,32 @@ export class DetailsComponent implements OnInit {
       });
   }
 
+  calculateDays(date: Date): string {
+    let currentDate = new Date();
+    let startDate = new Date(date);
+    const days =  Math.floor((Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) - Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()) ) /(1000 * 60 * 60 * 24));
+    return `${days} days ago`;
+  }
+
+  defineReviewStyle(score: number): string {
+    switch (score) {
+      case 1 : return 'danger';
+      case 2 : return 'secondary';
+      case 3 : return 'primary';
+      case 4 : return 'success';
+      case 5 : return 'warning';
+      default: return '';
+    }
+  }
+
+  averageScore() {
+    let reviewsSum: number = 0;
+    if (this.computer?.reviews) {
+      this.computer.reviews.forEach(review => {
+        reviewsSum += review.score;
+      });
+      return reviewsSum / this.computer.reviews.length;
+    }
+    return reviewsSum;
+  }
 }

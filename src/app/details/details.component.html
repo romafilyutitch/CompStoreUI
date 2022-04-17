@@ -1,7 +1,7 @@
 <main *ngIf="computer">
   <div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold">{{computer.name}}</h1>
-    <h2 class="display-5 fw-bold">{{computer.price}}</h2>
+    <h1 class="display-5">{{computer.name}}</h1>
+    <h2 class="display-5">{{computer.price}}</h2>
     <div class="col-lg-6 mx-auto">
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
         <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Add to Cart</button>
@@ -10,67 +10,221 @@
     </div>
   </div>
   <div class="b-example-divider"></div>
-  <div class="px-4 py-5 my-5 text-center">
-    <h2 class="display-5 fw-bold">General</h2>
-    <div class="col-lg-6 mx-auto">
-      <p class="lead">
-        Brand: {{computer.brand}}<br>
-        Operation System: {{computer.operationSystem}}<br>
-        Year: {{computer.year}}<br>
-      </p>
+  <div class="row row-cols-2 px-4 py-5 my-5 text-center">
+    <div class="col">
+      <h2 class="display-5">General data</h2>
+      <div>
+        <p class="lead">
+          Brand: {{computer.brand}}<br>
+          Name: {{computer.name}}<br>
+          Operation System: {{computer.operationSystem}}<br>
+          Year: {{computer.year}}<br>
+          Purpose: {{computer.purpose}}
+        </p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="accordion accordion-flush">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="generalDataInfo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#generalDataCollapse" aria-expanded="false" aria-controls="generalDataCollapse">
+              <p class="display-5 text-primary">General data info</p>
+            </button>
+          </h2>
+          <div id="generalDataCollapse" class="accordion-collapse collapse" aria-labelledby="generalDataInfo"
+               data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              The general data info describes the info common for all computers.
+              <ul class="list-group list-group-flush text-start m-2">
+                <li class="list-group-item">Brand - name of the company the produced the new computer.</li>
+                <li class="list-group-item">Name - Computer name/series.</li>
+                <li class="list-group-item">Operation system - operation system that installed on the computer.</li>
+                <li class="list-group-item">Year - year of computer production.</li>
+                <li class="list-group-item">Purpose - Activities that computer best suits for.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="b-example-divider"></div>
-  <div class="px-4 py-5 my-5 text-center">
-    <h2 class="display-5 fw-bold">Processor</h2>
-    <div class="col-lg-6 mx-auto">
-      <p class="lead">
-        Brand: {{computer.processor.brand}} <br>
-        Series: {{computer.processor.series}} <br>
-        Cores: {{computer.processor.coresAmount}} <br>
-        Frequency: {{computer.processor.frequency}}
-      </p>
+  <div class="row row-cols-2 px-4 py-5 my-5 text-center">
+    <div class="col">
+      <h2 class="display-5">Processor</h2>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead">
+          Brand: {{computer.processor.brand}} <br>
+          Series: {{computer.processor.series}} <br>
+          Cores: {{computer.processor.coresAmount}} <br>
+          Frequency: {{computer.processor.frequency}}
+        </p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="accordion accordion-flush">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="processorInfo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#processorCollapse" aria-expanded="false" aria-controls="processorCollapse">
+              <p class="display-5 text-primary">Processor info</p>
+            </button>
+          </h2>
+          <div id="processorCollapse" class="accordion-collapse collapse" aria-labelledby="processorInfo"
+               data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              Processor data contains data related to current computer processor
+              <ul class="list-group list-group-flush text-start m-2">
+                <li class="list-group-item">Brand - Name of company that made the processor.</li>
+                <li class="list-group-item">Series - Name of processor series.</li>
+                <li class="list-group-item">Cores - Amount of processor cores.</li>
+                <li class="list-group-item">Frequency - Processor operations frequency.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="b-example-divider"></div>
-  <div class="px-4 py-5 my-5 text-center">
-    <h2 class="display-5 fw-bold">Graphics</h2>
-    <div class="col-lg-6 mx-auto">
-      <p class="lead">
-        Brand: {{computer.graphicsUnit.brand}} <br>
-        Model: {{computer.graphicsUnit.model}} <br>
-        Type: {{computer.graphicsUnit.type}} <br>
-      </p>
+  <div class="row row-cols-2 px-4 py-5 my-5 text-center">
+    <div class="col">
+      <h2 class="display-5">GU</h2>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead">
+          Brand: {{computer.graphicsUnit.brand}} <br>
+          Model: {{computer.graphicsUnit.model}} <br>
+          Type: {{computer.graphicsUnit.type}}
+        </p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="accordion accordion-flush">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="GUInfo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#GUCollapse" aria-expanded="false" aria-controls="GUCollapse">
+              <p class="display-5 text-primary">GU info</p>
+            </button>
+          </h2>
+          <div id="GUCollapse" class="accordion-collapse collapse" aria-labelledby="GUInfo"
+               data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              GU (Graphics unit) data contains data related to computer GU
+              <ul class="list-group list-group-flush text-start m-2">
+                <li class="list-group-item">Brand - Name of company that made the GU.</li>
+                <li class="list-group-item">Model - Name of GU model.</li>
+                <li class="list-group-item">Type - Name of GU Type. May be only discrete or embedded</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="b-example-divider"></div>
-  <div class="px-4 py-5 my-5 text-center">
-    <h2 class="display-5 fw-bold">RandomAccessMemory</h2>
-    <div class="col-lg-6 mx-auto">
-      <p class="lead">
-        Type: {{computer.randomAccessMemory.type}}<br>
-        Volume: {{computer.randomAccessMemory.volume}}<br>
-        Frequency: {{computer.randomAccessMemory.frequency}} <br>
-      </p>
+  <div class="row row-cols-2 px-4 py-5 my-5 text-center">
+    <div class="col">
+      <h2 class="display-5">RAM</h2>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead">
+          Type: {{computer.randomAccessMemory.type}}<br>
+          Volume: {{computer.randomAccessMemory.volume}}<br>
+          Frequency: {{computer.randomAccessMemory.frequency}}
+        </p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="accordion accordion-flush">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="RAMInfo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#RAMCollapse" aria-expanded="false" aria-controls="RAMCollapse">
+              <p class="display-5 text-primary">RAM info</p>
+            </button>
+          </h2>
+          <div id="RAMCollapse" class="accordion-collapse collapse" aria-labelledby="RAMInfo"
+               data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              RAM (Random Access Memory) data contains data related to computer RAM
+              <ul class="list-group list-group-flush text-start m-2">
+                <li class="list-group-item">Type - RAM Type (DDR1, DDR2, DDR3, DDR4, DDR5)</li>
+                <li class="list-group-item">Volume - RAM volume. Measured in gigabytes</li>
+                <li class="list-group-item">Frequency - RAM operations frequency. Measured in GHz</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="b-example-divider"></div>
-  <div class="px-4 py-5 my-5 text-center">
-    <h2 class="display-5 fw-bold">ReadMemory</h2>
-    <div class="col-lg-6 mx-auto">
-      <p class="lead">
-        Type: {{computer.readMemory.type}}<br>
-        Volume: {{computer.readMemory.volume}}<br>
-      </p>
+  <div class="row row-cols-2 px-4 py-5 my-5 text-center">
+    <div class="col">
+      <h2 class="display-5">Read memory</h2>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead">
+          Type: {{computer.readMemory.type}}<br>
+          Volume: {{computer.readMemory.volume}}<br>
+        </p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="accordion accordion-flush">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="readMemoryInfo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#readMemoryCollapse" aria-expanded="false" aria-controls="ReadMemoryCollapse">
+              <p class="display-5 text-primary">Read memory info</p>
+            </button>
+          </h2>
+          <div id="readMemoryCollapse" class="accordion-collapse collapse" aria-labelledby="readMemoryInfo"
+               data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              Read memory data contains data related to computer Read memory
+              <ul class="list-group list-group-flush text-start m-2">
+                <li class="list-group-item">Type - Type of Read memory (HDD - Hard Drive Disc, SSD - Solid State
+                  Drive)
+                </li>
+                <li class="list-group-item">Volume - Read memory volume. Measured in gigabytes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="b-example-divider"></div>
-  <div class="px-4 py-5 my-5 text-center">
-    <h2 class="display-5 fw-bold">Reviews</h2>
-    <div class="col-lg-6 mx-auto">
+  <div class="row row-cols-2 px-4 py-5 my-5 text-center">
+    <div class="col">
+      <h2 class="display-5">Reviews</h2>
       <p class="lead">
-        {{computer.reviews}}
+        Comments amount : {{computer.reviews.length}}<br>
+        Average score: {{averageScore()}}
       </p>
+    </div>
+    <div class="col-6">
+      <div class="row" *ngFor="let review of computer.reviews">
+        <div class="col">
+          <div class="card p-3 m-3 border-3"
+          [ngClass]="'border-'.concat(defineReviewStyle(review.score))">
+            <div class="justify-content-between align-items-center">
+              <div class="user justify-content-between align-items-center">
+                <small class="text-primary display-6">{{review.user.username}}</small>
+              </div>
+              <small>{{calculateDays(review.date)}}</small>
+            </div>
+            <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill"
+            [ngClass]="'bg-'.concat(defineReviewStyle(review.score))">{{review.score}}</span>
+            <p>{{review.title}}</p>
+            <div class="action justify-content-between mt-2 align-items-center border rounded-3"
+            [ngClass]="'border-'.concat(defineReviewStyle(review.score))">
+              <p class="p-3">{{review.comment}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </main>
