@@ -11,20 +11,22 @@ import {ComputerService} from "../service/computer.service";
 export class DetailsComponent implements OnInit {
 
   computer: Computer | undefined;
+  images: any[] = [];
 
   constructor(private route: ActivatedRoute,
               private computerService: ComputerService) { }
 
   ngOnInit(): void {
-    //First get the product id from the current route.
     const routeParams = this.route.snapshot.paramMap;
     const productIdFromRoute = Number(routeParams.get('id'));
-    console.log(productIdFromRoute);
-    //Find the product that correspond with the id provided in route.
     this.computerService.findById(productIdFromRoute)
       .subscribe(response => {
         this.computer = response;
         console.log(this.computer);
+        this.computerService.downloadComputerImages(this.computer).subscribe(response => {
+          this.images = response.map(image => 'data:image/jpeg;base64,' + image.picByte);
+          console.log(this.images);
+        })
       });
   }
 

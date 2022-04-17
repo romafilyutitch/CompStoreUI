@@ -28,4 +28,8 @@ export class ComputerService extends ResourceService<Computer> {
     formData.forEach((value, key) => console.log(`Form data key ${key} form data value ${value}`));
     return this.httpClient.post(`${this.apiUrl}/${computerToSave.id}/images`, formData);
   }
+
+  downloadComputerImages(computer: Computer): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.apiUrl}/${computer.id}/images`);
+  }
 }
