@@ -1,22 +1,31 @@
 <main *ngIf="computer">
-  <div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5">{{computer.name}}</h1>
-    <h2 class="display-5">{{computer.price}}</h2>
-    <div class="col-lg-6 mx-auto">
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Add to Cart</button>
-        <button type="button" [routerLink]="''" class="btn btn-outline-secondary btn-lg px-4">Back</button>
+  <div class="row row-cols-2 px-4 py-5 my-5 text-center">
+    <div class="col">
+      <h1 class="display-5">{{computer.name}}</h1>
+      <h2 class="display-5">{{computer.price}}</h2>
+      <div class="col-lg-6 mx-auto">
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Add to Cart</button>
+          <button type="button" [routerLink]="''" class="btn btn-outline-secondary btn-lg px-4">Back</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="px-4 py-5 my-5 text-center">
-    <ngb-carousel *ngIf="images">
-      <ng-template ngbSlide *ngFor="let image of images">
-        <div class="picsum-img-wrapper">
-          <img [src]="image" alt="Random first slide" width="500" height="300">
-        </div>
-      </ng-template>
-    </ngb-carousel>
+    <div class="col">
+      <h2 class="display-5">Images</h2>
+      <ngb-carousel class="bg-light border rounded-3"
+        [showNavigationArrows]="true"
+        [showNavigationIndicators]="true"
+        [keyboard]="true"
+        [pauseOnHover]="true"
+        [wrap]="true"
+      >
+        <ng-template ngbSlide *ngFor="let image of images">
+          <div class="picsum-img-wrapper">
+            <img [src]="image" class="img-fluid" style="width: 300px; height: 300px">
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
   </div>
   <div class="b-example-divider"></div>
   <div class="row row-cols-2 px-4 py-5 my-5 text-center">
@@ -217,7 +226,7 @@
       <div class="row" *ngFor="let review of computer.reviews">
         <div class="col">
           <div class="card p-3 m-3 border-3"
-          [ngClass]="'border-'.concat(defineReviewStyle(review.score))">
+               [ngClass]="'border-'.concat(defineReviewStyle(review.score))">
             <div class="justify-content-between align-items-center">
               <div class="user justify-content-between align-items-center">
                 <small class="text-primary display-6">{{review.user.username}}</small>
@@ -225,10 +234,10 @@
               <small>{{calculateDays(review.date)}}</small>
             </div>
             <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill"
-            [ngClass]="'bg-'.concat(defineReviewStyle(review.score))">{{review.score}}</span>
+                  [ngClass]="'bg-'.concat(defineReviewStyle(review.score))">{{review.score}}</span>
             <p>{{review.title}}</p>
             <div class="action justify-content-between mt-2 align-items-center border rounded-3"
-            [ngClass]="'border-'.concat(defineReviewStyle(review.score))">
+                 [ngClass]="'border-'.concat(defineReviewStyle(review.score))">
               <p class="p-3">{{review.comment}}</p>
             </div>
           </div>
