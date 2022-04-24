@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {RxwebValidators} from "@rxweb/reactive-form-validators";
 
 @Component({
   selector: 'app-sign-up',
@@ -14,14 +15,19 @@ export class SignUpComponent implements OnInit {
     this.signupForm = forBuilder.group({
       username: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, Validators.required)
+      password: new FormControl(null, Validators.required),
+      confirmPassword: ['', RxwebValidators.compare({fieldName: 'password'})]
     })
   }
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    console.log('Submitting sin up form')
+  signUp() {
+    console.log('sign up user');
+  }
+
+  signIn() {
+    console.log('sign in user');
   }
 }
