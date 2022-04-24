@@ -8,11 +8,14 @@ import { DetailsComponent } from './details/details.component';
 import { AddComponent} from "./add/add.component";
 import { ReactiveFormsModule} from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CartComponent } from './cart/cart.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
   {path: '', component : MainComponent},
   {path: 'details/:id', component: DetailsComponent},
-  {path: 'add', component: AddComponent}
+  {path: 'add', component: AddComponent},
+  {path: 'signup', component: SignUpComponent}
 ];//sets up routes constant where you define your routes.
 
 @NgModule({
@@ -20,7 +23,9 @@ const routes: Routes = [
     AppComponent,
     MainComponent,
     DetailsComponent,
-    AddComponent
+    AddComponent,
+    CartComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
