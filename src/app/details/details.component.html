@@ -224,6 +224,33 @@
         Average score: {{averageScore()}}
       </p>
     </div>
+    <div class="col">
+      <h2 class="display-5">Add Your review here</h2>
+      <form [formGroup]="reviewForm" (ngSubmit)="addReview()" >
+        <div class="form-group">
+          <label class="form-label" for="exampleFormControlTextarea1">Comment area</label>
+          <textarea formControlName="comment" class="form-control border-3" id="exampleFormControlTextarea1" rows="3"
+          [ngClass]="reviewForm.get('comment')?.errors ? 'is-invalid' : 'is-valid'"></textarea>
+          <div class="invalid-feedback">Enter a comment</div>
+          <div class="valid-feedback">Comment looks good!</div>
+          <label class="form-label" for="score">Chose score from 1 to 5</label>
+          <select class="form-select" id="score" formControlName="score"
+          [ngClass]="reviewForm.get('score')?.errors ? 'is-invalid' : 'is-valid'">
+            <option disabled selected>Choose...</option>
+            <option value="1">1 Score</option>
+            <option value="2">2 Score</option>
+            <option value="3">3 Score</option>
+            <option value="4">4 Score</option>
+            <option value="5">5 Score</option>
+          </select>
+          <div class="invalid-feedback">Choose review score</div>
+          <div class="valid-feedback">Review score looks good</div>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-success m-3" [disabled]="!reviewForm.valid">Add review</button>
+          </div>
+        </div>
+      </form>
+    </div>
     <div class="col-6">
       <div class="row" *ngFor="let review of computer.reviews">
         <div class="col">

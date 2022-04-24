@@ -42,8 +42,9 @@ export abstract class ResourceService<T> {
       );
   }
 
-  update(resource: T) {
-    return this.http.put(`${this.apiUrl}`, resource)
+  update(id: number, resource: T): Observable<T> {
+    console.log(resource);
+    return this.http.post<T>(`${this.apiUrl}/${id}`, resource)
       .pipe(
         catchError(this.handleError)
       );

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap} from "@angular/router";
 import {Computer} from "../model/computer";
 import {ComputerService} from "../service/computer.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Review} from "../model/review";
 
 @Component({
   selector: 'app-details',
@@ -12,9 +14,15 @@ export class DetailsComponent implements OnInit {
 
   computer: Computer | undefined;
   images: any[] = [];
+  reviewForm = this.formBuilder.group({
+    comment: new FormControl(null, Validators.required),
+    score: new FormControl(null, Validators.required)
+  });
 
   constructor(private route: ActivatedRoute,
-              private computerService: ComputerService) { }
+              private computerService: ComputerService,
+              private formBuilder: FormBuilder) {
+  }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
@@ -50,12 +58,29 @@ export class DetailsComponent implements OnInit {
 
   averageScore() {
     let reviewsSum: number = 0;
+    console.log(this.computer?.reviews);
     if (this.computer?.reviews) {
       this.computer.reviews.forEach(review => {
-        reviewsSum += review.score;
+        reviewsSum += Number(review.score);
+        console.log(reviewsSum);
       });
       return reviewsSum / this.computer.reviews.length;
     }
     return reviewsSum;
+  }
+
+  addReview() {
+    const newReview = {} as Review;
+    newReview.comment = this.reviewForm.value.comment;
+    newReview.score = this.reviewForm.value.score;
+    newReview.date = new Date(Date.now());
+    console.log(newReview.date);
+    //@TODO add user here
+    this.computer?.reviews.push(newReview);
+    if (this.computer && this.reviewForm.valid) {
+      this.computerService.update(this.computer.id, this.computer).subscribe(computer => {
+        this.computer = computer;
+      })
+    }
   }
 }
