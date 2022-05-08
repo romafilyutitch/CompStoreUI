@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {RxwebValidators} from "@rxweb/reactive-form-validators";
 import {AuthenticationService} from "../service/authentication.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-up',
@@ -11,9 +13,15 @@ import {AuthenticationService} from "../service/authentication.service";
 export class SignUpComponent implements OnInit {
 
   signupForm;
+  @ViewChild('registerSuccessful')
+  registerSuccessful: TemplateRef<any> | undefined;
+  @ViewChild('loginSuccessful')
+  loginSuccessful: TemplateRef<any> | undefined;
 
   constructor(private forBuilder: FormBuilder,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private modalService: NgbModal,
+              private router: Router) {
     this.signupForm = forBuilder.group({
       username: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
@@ -26,12 +34,21 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp() {
-    console.log('sign up user');
+    console.log('Login user');
     this.authenticationService.authenticate(this.signupForm.value.username, this.signupForm.value.password)
-      .subscribe(data => console.log(data));
+      .subscribe(data => {
+        console.log(data);
+        this.modalService.open(this.loginSuccessful, {centered : true});
+        this.router.navigate(['']);
+      });
   }
 
   signIn() {
-    console.log('sign in user');
+    console.log('Register');
+    this.authenticationService.register(this.signupForm.value.username, this.signupForm.value.email, this.signupForm.value.password)
+      .subscribe(data => {
+        console.log(data);
+        this.modalService.open(this.registerSuccessful, {centered : true});
+      });
   }
 }

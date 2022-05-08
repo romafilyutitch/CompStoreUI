@@ -53,8 +53,8 @@
               <div class="valid-feedback">Confirm password looks good!</div>
             </div>
             <div class="d-grid col-12 mx-auto">
-              <button class="btn btn-outline-success mb-3" (click)="signUp()" [disabled]="!signupForm.valid">Sign up</button>
-              <button class="btn btn-outline-primary" (click)="signIn()" [disabled]="!signupForm.valid">Sign in</button>
+              <button class="btn btn-outline-success mb-3" (click)="signUp()" [disabled]="!signupForm.valid">Login</button>
+              <button class="btn btn-outline-primary" (click)="signIn()" [disabled]="!signupForm.valid">Register</button>
             </div>
           </form>
         </div>
@@ -62,3 +62,29 @@
     </div>
   </div>
 </div>
+
+<ng-template #registerSuccessful let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Successful register</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>The user register was successful. Now you have to login with your credentials (username, email and password)</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #loginSuccessful let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Successful register</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>The user login was successful. Now you will be redirected to the main page</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

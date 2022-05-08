@@ -23,14 +23,22 @@ export class AuthenticationService {
       )
   }
 
-  isUserLoggedIn() {
+  register(username:string, email:string, password:string) {
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('token');
+    return this.httpClient.post("http://localhost:8080/register", {username, email, password});
+  }
+
+  isUserLoggedIn(): boolean {
     let user = sessionStorage.getItem("username");
-    console.log(user !== null);
-    return user !== null;
+    let token = sessionStorage.getItem('token');
+    console.log(user != null && token != null);
+    return user != null && token != null;
   }
 
   logout() {
     sessionStorage.removeItem("username");
+    sessionStorage.removeItem('token');
   }
 
 
