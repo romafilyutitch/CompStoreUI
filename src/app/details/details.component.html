@@ -228,6 +228,12 @@
       <h2 class="display-5">Add Your review here</h2>
       <form [formGroup]="reviewForm" (ngSubmit)="addReview()" >
         <div class="form-group">
+          <label for="title" class="form-label">Title</label>
+          <input formControlName="title" type="text" class="form-control" id="title" placeholder="title"
+                 required
+                 [ngClass]="reviewForm.get('title')?.errors ? 'is-invalid' : 'is-valid'">
+          <div class="invalid-feedback">Enter a title</div>
+          <div class="valid-feedback">Title looks good!</div>
           <label class="form-label" for="exampleFormControlTextarea1">Comment area</label>
           <textarea formControlName="comment" class="form-control border-3" id="exampleFormControlTextarea1" rows="3"
           [ngClass]="reviewForm.get('comment')?.errors ? 'is-invalid' : 'is-valid'"></textarea>

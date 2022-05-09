@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {map} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {map, Observable} from "rxjs";
+import {User} from "../model/user";
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +30,13 @@ export class AuthenticationService {
     return this.httpClient.post("http://localhost:8080/register", {username, email, password});
   }
 
+  findUserInfo(): Observable<User> {
+    return this.httpClient.get<User>("http://localhost:8080/users/me");
+  }
+
   isUserLoggedIn(): boolean {
     let user = sessionStorage.getItem("username");
     let token = sessionStorage.getItem('token');
-    console.log(user != null && token != null);
     return user != null && token != null;
   }
 

@@ -51,7 +51,7 @@ export class SignUpComponent implements OnInit {
   }
 
   signIn() {
-    console.log('Register');
+    console.log(`Register username ${this.signupForm.value.username} password ${this.signupForm.value.password}` );
     this.authenticationService.register(this.signupForm.value.username, this.signupForm.value.email, this.signupForm.value.password)
       .subscribe(data => {
         console.log(data);

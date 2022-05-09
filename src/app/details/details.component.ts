@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 import {Computer} from "../model/computer";
 import {ComputerService} from "../service/computer.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Review} from "../model/review";
+import {AuthenticationService} from "../service/authentication.service";
 
 @Component({
   selector: 'app-details',
@@ -15,13 +16,15 @@ export class DetailsComponent implements OnInit {
   computer: Computer | undefined;
   images: any[] = [];
   reviewForm = this.formBuilder.group({
+    title: new FormControl(null, Validators.required),
     comment: new FormControl(null, Validators.required),
     score: new FormControl(null, Validators.required)
   });
 
   constructor(private route: ActivatedRoute,
               private computerService: ComputerService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -41,18 +44,24 @@ export class DetailsComponent implements OnInit {
   calculateDays(date: Date): string {
     let currentDate = new Date();
     let startDate = new Date(date);
-    const days =  Math.floor((Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) - Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()) ) /(1000 * 60 * 60 * 24));
+    const days = Math.floor((Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) - Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())) / (1000 * 60 * 60 * 24));
     return `${days} days ago`;
   }
 
   defineReviewStyle(score: number): string {
     switch (score) {
-      case 1 : return 'danger';
-      case 2 : return 'secondary';
-      case 3 : return 'primary';
-      case 4 : return 'success';
-      case 5 : return 'warning';
-      default: return '';
+      case 1 :
+        return 'danger';
+      case 2 :
+        return 'secondary';
+      case 3 :
+        return 'primary';
+      case 4 :
+        return 'success';
+      case 5 :
+        return 'warning';
+      default:
+        return '';
     }
   }
 
@@ -70,17 +79,21 @@ export class DetailsComponent implements OnInit {
   }
 
   addReview() {
-    const newReview = {} as Review;
-    newReview.comment = this.reviewForm.value.comment;
-    newReview.score = this.reviewForm.value.score;
-    newReview.date = new Date(Date.now());
-    console.log(newReview.date);
-    //@TODO add user here
-    this.computer?.reviews.push(newReview);
-    if (this.computer && this.reviewForm.valid) {
-      this.computerService.update(this.computer.id, this.computer).subscribe(computer => {
-        this.computer = computer;
-      })
-    }
+    this.authenticationService.findUserInfo()
+      .subscribe(user => {
+        const newReview = {} as Review;
+        newReview.user = user;
+        newReview.title = this.reviewForm.value.title;
+        newReview.comment = this.reviewForm.value.comment;
+        newReview.score = this.reviewForm.value.score;
+        newReview.date = new Date(Date.now());
+        if (this.computer) {
+          this.computerService.postReview(this.computer, newReview)
+            .subscribe(computer => {
+              console.log(computer);
+              this.computer = computer;
+            });
+        }
+      });
   }
 }

@@ -3,6 +3,7 @@ import {ResourceService} from "./resource.service";
 import {Computer} from "../model/computer";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Review} from "../model/review";
 
 @Injectable({
   providedIn: 'root'
@@ -32,4 +33,9 @@ export class ComputerService extends ResourceService<Computer> {
   downloadComputerImages(computer: Computer): Observable<any[]> {
     return this.httpClient.get<any[]>(`${this.apiUrl}/${computer.id}/images`);
   }
+
+  postReview(computer: Computer, review: Review): Observable<Computer> {
+    return this.httpClient.post<Computer>(`${this.apiUrl}/${computer.id}/reviews`, review)
+  }
+
 }
