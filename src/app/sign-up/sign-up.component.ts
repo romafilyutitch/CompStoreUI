@@ -4,6 +4,7 @@ import {RxwebValidators} from "@rxweb/reactive-form-validators";
 import {AuthenticationService} from "../service/authentication.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
+import {HttpStatusCode} from "@angular/common/http";
 
 @Component({
   selector: 'app-sign-up',
@@ -17,6 +18,8 @@ export class SignUpComponent implements OnInit {
   registerSuccessful: TemplateRef<any> | undefined;
   @ViewChild('loginSuccessful')
   loginSuccessful: TemplateRef<any> | undefined;
+  @ViewChild('failedAuthenticate')
+  loginFailed: TemplateRef<any> | undefined;
 
   constructor(private forBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
@@ -37,9 +40,13 @@ export class SignUpComponent implements OnInit {
     console.log('Login user');
     this.authenticationService.authenticate(this.signupForm.value.username, this.signupForm.value.password)
       .subscribe(data => {
-        console.log(data);
         this.modalService.open(this.loginSuccessful, {centered : true});
         this.router.navigate(['']);
+      }, error => {
+          if (error.status === HttpStatusCode.Unauthorized)  {
+            this.modalService.open(this.loginFailed, {centered: true});
+          }
+        console.log(error.message);
       });
   }
 

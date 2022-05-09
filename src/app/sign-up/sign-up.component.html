@@ -88,3 +88,18 @@
     <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
   </div>
 </ng-template>
+
+<ng-template #failedAuthenticate let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Failed to authenticate</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>
+      Authentication has been failed. User name or password is wrong. Try to enter right username and password please.
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')"></button>
+  </div>
+</ng-template>
