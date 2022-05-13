@@ -7,10 +7,11 @@ import { Routes, RouterModule} from '@angular/router';
 import { DetailsComponent } from './details/details.component';
 import { AddComponent} from "./add/add.component";
 import { ReactiveFormsModule} from "@angular/forms";
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbPopover} from '@ng-bootstrap/ng-bootstrap';
 import { CartComponent } from './cart/cart.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {BasicAuthHttpInterceptorService} from "./service/basic-auth-http-interceptor.service";
+import {NgxPopper} from "angular-popper";
 
 const routes: Routes = [
   {path: '', component : MainComponent},
@@ -34,7 +35,8 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgxPopper
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi:true

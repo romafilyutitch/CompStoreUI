@@ -19,6 +19,7 @@ import {OrderStatus} from "../model/order-status";
 export class DetailsComponent implements OnInit {
 
   computer: Computer | undefined;
+  reviews: Review[] | undefined;
   images: any[] = [];
   reviewForm = this.formBuilder.group({
     title: new FormControl(null, Validators.required),
@@ -52,6 +53,11 @@ export class DetailsComponent implements OnInit {
           this.images = response.map(image => 'data:image/jpeg;base64,' + image.picByte);
           console.log(this.images);
         })
+        this.computerService.getReviews(this.computer)
+          .subscribe(reviews => {
+            this.reviews = reviews;
+            console.log(this.reviews);
+          })
       });
   }
 
@@ -81,13 +87,11 @@ export class DetailsComponent implements OnInit {
 
   averageScore() {
     let reviewsSum: number = 0;
-    console.log(this.computer?.reviews);
-    if (this.computer?.reviews) {
-      this.computer.reviews.forEach(review => {
+    if (this.reviews) {
+      this.reviews.forEach(review => {
         reviewsSum += Number(review.score);
-        console.log(reviewsSum);
       });
-      return reviewsSum / this.computer.reviews.length;
+      return reviewsSum / this.reviews.length;
     }
     return reviewsSum;
   }
@@ -104,8 +108,11 @@ export class DetailsComponent implements OnInit {
         if (this.computer) {
           this.computerService.postReview(this.computer, newReview)
             .subscribe(computer => {
-              console.log(computer);
               this.computer = computer;
+              this.computerService.getReviews(this.computer)
+                .subscribe(reviews => {
+                  this.reviews = reviews;
+                })
             });
         }
       });

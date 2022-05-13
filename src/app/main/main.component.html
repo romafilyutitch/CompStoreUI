@@ -2,13 +2,19 @@
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Album example</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator,
-          etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        <p>
-          <button type="button" class="btn btn-primary my-2" [routerLink]="['/add']">Add new Computer</button>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        <h1 class="fw-light">Computer store application</h1>
+        <p class="lead text-muted">This is the computer store web-application demo.
+          The application purpose is to store and publish computers by companies and
+          and to by computers by clients. Also there are authentication and authorization features implemented
+          in the web-application.
         </p>
+        <p>
+          <button *ngIf="currentUser?.userRole?.toString() === 'ROLE_ADMIN'" type="button" class="btn btn-primary my-2" [routerLink]="['/add']">Add new Computer</button>
+        </p>
+        <h2 class="fw-light">Sort products by criteria</h2>
+        <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+          Sort Menu
+        </a>
       </div>
     </div>
   </section>
@@ -42,5 +48,41 @@
   </div>
 </div>
 
-
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h2 class="offcanvas-title fw-light" id="offcanvasExampleLabel">Sort Menu</h2>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      Here you can sort current products by criteria.
+      The amount of criteria will be increasing in time.
+      For example you can sort the computers by name, year, cost etc.
+    </div>
+    <div class="d-grid gap-2 mx-auto">
+      <button class="btn btn-primary" type="button" (click)="sortByName()">Sort By Name</button>
+      <button class="btn btn-primary" type="button" (click)="sortByYear()">Sort By Year</button>
+      <button class="btn btn-primary" type="button" (click)="sortByPrice()">Sort By Price</button>
+    </div>
+    <hr>
+    <h2 class="fw-light">Searching in price diapason</h2>
+    <div>
+      You can find computer in some price range.
+      <label class="form-label" for="priceStart">Start price</label>
+      <input class="form-control" type="number" id="priceStart" #priceStart>
+      <label class="form-label" for="priceEnd">Price end</label>
+      <input class="form-control" type="number" id="priceEnd" #priceEnd>
+    </div>
+    <div class="d-grid gap-2 mx-auto">
+      <button class="btn btn-primary" type="button" (click)="findInPriceRange(priceStart.value, priceEnd.value)">Find</button>
+    </div>
+    <hr>
+    <h2 class="fw-light">Find user's chose top 5</h2>
+    <div>Here you can find top 5 computers filtered by users chose (most ordered, with highest average review score)</div>
+    <div class="d-grid gap-2 mx-auto">
+      <button class="btn btn-primary" type="button" (click)="findTopMostOrdered(5)">Find top 5 most ordered computers</button>
+      <button class="btn btn-primary" type="button" (click)="findTopAverageReview(5)">Find top 5 by average review score</button>
+    </div>
+  </div>
+</div>
 

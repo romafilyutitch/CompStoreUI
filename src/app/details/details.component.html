@@ -219,8 +219,8 @@
   <div class="row row-cols-2 px-4 py-5 my-5 text-center">
     <div class="col">
       <h2 class="display-5">Reviews</h2>
-      <p class="lead" *ngIf="computer.reviews.length">
-        Comments amount : {{computer.reviews.length}}<br>
+      <p class="lead" *ngIf="reviews?.length">
+        Comments amount : {{reviews?.length}}<br>
         Average score: {{averageScore()}}
       </p>
     </div>
@@ -258,7 +258,7 @@
       </form>
     </div>
     <div class="col-6">
-      <div class="row" *ngFor="let review of computer.reviews">
+      <div class="row" *ngFor="let review of reviews">
         <div class="col">
           <div class="card p-3 m-3 border-3"
                [ngClass]="'border-'.concat(defineReviewStyle(review.score))">

@@ -38,4 +38,11 @@ export class ComputerService extends ResourceService<Computer> {
     return this.httpClient.post<Computer>(`${this.apiUrl}/${computer.id}/reviews`, review)
   }
 
+  getReviews(computer: Computer): Observable<Review[]> {
+    return this.httpClient.get<Review[]>(`${this.apiUrl}/${computer.id}/reviews`);
+  }
+
+  findTopAverageReview(): Observable<Computer[]> {
+    return this.httpClient.get<Computer[]>(`${this.apiUrl}/topByAverage`)
+  }
 }
