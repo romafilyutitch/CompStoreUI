@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Computer} from "../model/computer";
 import {ComputerService} from "../service/computer.service";
@@ -8,6 +8,7 @@ import {AuthenticationService} from "../service/authentication.service";
 import {User} from "../model/user";
 import {Order} from "../model/order";
 import {UserService} from "../service/user.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-details',
@@ -24,12 +25,15 @@ export class DetailsComponent implements OnInit {
     score: new FormControl(null, Validators.required)
   });
   private currentUser: User | undefined;
+  @ViewChild('productOrdered')
+  productOrderedModal: TemplateRef<any> | undefined;
 
   constructor(private route: ActivatedRoute,
               private computerService: ComputerService,
               private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
-              private userService: UserService) {
+              private userService: UserService,
+              private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -112,7 +116,7 @@ export class DetailsComponent implements OnInit {
       this.userService.addUserOrder(this.currentUser, newOrder)
         .subscribe(user => {
           this.currentUser = user;
-          console.log(`order was added to users ${this.currentUser.username}`);
+          this.modalService.open(this.productOrderedModal, {centered: true})
         })
     }
   }

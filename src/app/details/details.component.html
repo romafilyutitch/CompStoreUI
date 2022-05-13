@@ -281,3 +281,20 @@
     </div>
   </div>
 </main>
+
+<ng-template #productOrdered let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Product has been ordered</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>
+      Computer {{computer?.name}} has been ordered successfully.
+      You have to submit your order at the cart page.
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-primary" [routerLink]="'/cart'">Go to Cart</button>
+  </div>
+</ng-template>
