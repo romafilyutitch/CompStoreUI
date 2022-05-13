@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Computer} from "../model/computer";
 import {ComputerService} from "../service/computer.service";
@@ -9,6 +9,7 @@ import {User} from "../model/user";
 import {Order} from "../model/order";
 import {UserService} from "../service/user.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {OrderStatus} from "../model/order-status";
 
 @Component({
   selector: 'app-details',
@@ -112,7 +113,7 @@ export class DetailsComponent implements OnInit {
 
   addToCart() {
     if (this.computer && this.currentUser) {
-      const newOrder: Order = {computer: this.computer};
+      const newOrder: Order = { status: OrderStatus.NEW, computer: this.computer};
       this.userService.addUserOrder(this.currentUser, newOrder)
         .subscribe(user => {
           this.currentUser = user;
