@@ -16,7 +16,8 @@ const routes: Routes = [
   {path: '', component : MainComponent},
   {path: 'details/:id', component: DetailsComponent},
   {path: 'add', component: AddComponent},
-  {path: 'signup', component: SignUpComponent}
+  {path: 'signup', component: SignUpComponent},
+  {path: 'cart', component: CartComponent}
 ];//sets up routes constant where you define your routes.
 
 @NgModule({

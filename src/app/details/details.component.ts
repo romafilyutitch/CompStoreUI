@@ -1,10 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Computer} from "../model/computer";
 import {ComputerService} from "../service/computer.service";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Review} from "../model/review";
 import {AuthenticationService} from "../service/authentication.service";
+import {User} from "../model/user";
+import {Order} from "../model/order";
+import {UserService} from "../service/user.service";
 
 @Component({
   selector: 'app-details',
@@ -20,14 +23,20 @@ export class DetailsComponent implements OnInit {
     comment: new FormControl(null, Validators.required),
     score: new FormControl(null, Validators.required)
   });
+  private currentUser: User | undefined;
 
   constructor(private route: ActivatedRoute,
               private computerService: ComputerService,
               private formBuilder: FormBuilder,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
+    this.authenticationService.findUserInfo()
+      .subscribe(user => {
+        this.currentUser = user;
+      })
     const routeParams = this.route.snapshot.paramMap;
     const productIdFromRoute = Number(routeParams.get('id'));
     this.computerService.findById(productIdFromRoute)
@@ -95,5 +104,16 @@ export class DetailsComponent implements OnInit {
             });
         }
       });
+  }
+
+  addToCart() {
+    if (this.computer && this.currentUser) {
+      const newOrder: Order = {computer: this.computer};
+      this.userService.addUserOrder(this.currentUser, newOrder)
+        .subscribe(user => {
+          this.currentUser = user;
+          console.log(`order was added to users ${this.currentUser.username}`);
+        })
+    }
   }
 }

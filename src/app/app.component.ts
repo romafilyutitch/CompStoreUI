@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AuthenticationService} from "./service/authentication.service";
+import {User} from "./model/user";
 
 @Component({
   selector: 'app-root',
@@ -19,4 +20,6 @@ export class AppComponent {
   logout() {
     this.authenticationService.logout();
   }
+
+
 }
